@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!-- 
+config.xml
+
+Copyright (c) 2010-2011 PayFast (Pty) Ltd
+ 
+LICENSE:
+ 
+This payment module is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation; either version 3 of the License, or (at
+your option) any later version.
+ 
+This payment module is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+License for more details.
+ 
+@author     Jonathan Smit
+@copyright  2010-2011 PayFast (Pty) Ltd
+@license    http://www.opensource.org/licenses/lgpl-license.php LGPL
+@link       http://www.payfast.co.za/help/cube_cart
+@category   PayFast
+@package    PayFast_PayFast
+-->
+<config>
+	<modules>
+		<PayFast_PayFast>
+			<version>0.1.0</version>
+		</PayFast_PayFast>
+	</modules>
+	<global>
+		<blocks>
+			<payfast>
+				<class>PayFast_PayFast_Block</class>
+			</payfast>
+		</blocks>
+		<helpers>
+			<payfast>
+				<class>PayFast_PayFast_Helper</class>
+			</payfast>
+		</helpers>
+		<models>
+			<payfast>
+				<class>PayFast_PayFast_Model</class>
+			</payfast>
+		</models>
+		<resources>
+			<payfast_setup>
+				<setup>
+					<module>PayFast_PayFast</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</payfast_setup>
+			<newmodule_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</newmodule_write>
+			<newmodule_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</newmodule_read>
+		</resources>
+    </global>
+	
+	<frontend>
+		<routers>
+			<payfast> 
+				<use>standard</use>
+				<args>
+					<module>PayFast_PayFast</module>
+					<frontName>payfast</frontName>
+				</args>
+			</payfast>
+		</routers>
+	</frontend>
+ 
+	<default>
+		<payment>
+			<payfast>
+				<model>payfast/standard</model>
+				<active>0</active>
+				<title><![CDATA[PayFast]]></title>
+				<server>test</server>
+				<debugging>0</debugging>
+			</payfast>
+		</payment>
+	</default>
+</config>
