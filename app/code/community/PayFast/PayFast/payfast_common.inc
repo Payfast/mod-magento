@@ -26,7 +26,7 @@
 define( 'PF_SOFTWARE_NAME', 'Magento' );
 define( 'PF_SOFTWARE_VER', Mage::getVersion() );
 define( 'PF_MODULE_NAME', 'PayFast-Magento' );
-define( 'PF_MODULE_VER', '1.00' );
+define( 'PF_MODULE_VER', '1.1' );
 
 // Features
 // - PHP
