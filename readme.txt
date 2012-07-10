@@ -1,6 +1,6 @@
-PayFast Magento v1.4-1.6 Module v1.1 for Magento v1.4-1.6
+PayFast Magento v1.4-1.7 Module v1.1 for Magento v1.4-1.7
 -----------------------------------------------------------------------------
-Copyright (c) 2010-2011 PayFast (Pty) Ltd
+Copyright (c) 2010-2012 PayFast (Pty) Ltd
 
 LICENSE:
  
