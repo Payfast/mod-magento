@@ -188,29 +188,44 @@ class PayFast_PayFast_Model_Standard extends Mage_Payment_Model_Method_Abstract
 		$description .= 'Total = '. $order->getOrderCurrencyCode() . $this->getTotalAmount( $order ).';';
 		
         // Construct data for the form
-		$data = array(
+        $data = array(
             // Merchant details
             'merchant_id' => $merchantId,
-			'merchant_key' => $merchantKey,
-			'return_url' => $this->getPaidSuccessUrl(),
-			'cancel_url' => $this->getPaidCancelUrl(),
-			'notify_url' => $this->getPaidNotifyUrl(),
-			
-            // Buyer details
-			'name_first' => $order->getData( 'customer_firstname' ),
-			'name_last' => $order->getData( 'customer_lastname' ),
-			'email_address' => $order->getData( 'customer_email' ),
+            'merchant_key' => $merchantKey,
+            'return_url' => $this->getPaidSuccessUrl(),
+            'cancel_url' => $this->getPaidCancelUrl(),
+            'notify_url' => $this->getPaidNotifyUrl(),
             
-            // Item details
-			'item_name' => $this->getStoreName().', Order #'.$this->getRealOrderId(),
-			'item_description' => $description,
-			'amount' => $this->getTotalAmount( $order ),
-			'm_payment_id' => $this->getRealOrderId(),
-            'currency_code'  => $order->getOrderCurrencyCode(),
+            // Buyer details
+            'name_first' => $order->getData( 'customer_firstname' ),
+            'name_last' => $order->getData( 'customer_lastname' ),
+            'email_address' => $order->getData( 'customer_email' ),
 
-            // Other
-            'user_agent' => PF_USER_AGENT,
+            // Item details
+            'm_payment_id' => $this->getRealOrderId(),
+            'amount' => $this->getTotalAmount( $order ),
+            'item_name' => $this->getStoreName().', Order #'.$this->getRealOrderId(),
+            'item_description' => $description,
         );
+
+        $pfOutput = '';
+        // Create output string
+        foreach( $data as $key => $val )
+            $pfOutput .= $key .'='. urlencode( trim( $val ) ) .'&';
+    
+        $passPhrase = $this->getConfigData( 'passphrase');
+
+        if( empty( $passPhrase ) || $this->getConfigData( 'server' ) != 'live' )
+        {
+            $pfOutput = substr( $pfOutput, 0, -1 );
+        }
+        else
+        {
+            $pfOutput = $pfOutput."passphrase=".urlencode( $passPhrase );
+        }
+
+        $pfSignature = md5( $pfOutput );
+        $data['signature'] = $pfSignature;
         
 		return( $data );
 	}
