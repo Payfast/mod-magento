@@ -180,12 +180,8 @@ class PayFast_PayFast_Model_Standard extends Mage_Payment_Model_Method_Abstract
 			$totalPrice = $this->getNumberFormat( $items->getQtyOrdered() * $items->getPrice() );
 			$description .=
                 $this->getNumberFormat( $items->getQtyOrdered() ) .
-                ' x '. $items->getName() .
-                ' @ '. $order->getOrderCurrencyCode() . $this->getNumberFormat( $items->getPrice() ) .
-                ' = '. $order->getOrderCurrencyCode() . $totalPrice .'; ';
+                ' x '. $items->getName() .'; ';
 		}
-		$description .= 'Shipping = '. $order->getOrderCurrencyCode() . $this->getNumberFormat( $order->getShippingAmount() ).';';
-		$description .= 'Total = '. $order->getOrderCurrencyCode() . $this->getTotalAmount( $order ).';';
 		
         // Construct data for the form
         $data = array(
