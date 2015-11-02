@@ -222,6 +222,7 @@ class PayFast_PayFast_Model_Standard extends Mage_Payment_Model_Method_Abstract
 
         $pfSignature = md5( $pfOutput );
         $data['signature'] = $pfSignature;
+        $data['user_agent'] = 'Magento 1.9';
         
 		return( $data );
 	}
