@@ -182,6 +182,8 @@ class PayFast_PayFast_Model_Standard extends Mage_Payment_Model_Method_Abstract
                 $this->getNumberFormat( $items->getQtyOrdered() ) .
                 ' x '. $items->getName() .'; ';
 		}
+
+        $pfDescription = substr( $description, 0, 254 );
 		
         // Construct data for the form
         $data = array(
@@ -201,7 +203,7 @@ class PayFast_PayFast_Model_Standard extends Mage_Payment_Model_Method_Abstract
             'm_payment_id' => $this->getRealOrderId(),
             'amount' => $this->getTotalAmount( $order ),
             'item_name' => $this->getStoreName().', Order #'.$this->getRealOrderId(),
-            'item_description' => $description,
+            'item_description' => $pfDescription,
         );
 
         $pfOutput = '';
