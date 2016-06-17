@@ -81,9 +81,12 @@ class PayFast_PayFast_NotifyController extends Mage_Core_Controller_Front_Action
         if( !$pfError )
         {
             pflog( 'Verify security signature' );
-        
+
+            $passPhrase = Mage::getStoreConfig( 'payment/payfast/passphrase' );
+            $pfPassphrase = empty( $passPhrase ) ? null : $passPhrase;
+
             // If signature different, log for debugging
-            if( !pfValidSignature( $pfData, $pfParamString ) )
+            if( !pfValidSignature( $pfData, $pfParamString, $pfPassphrase ) )
             {
                 $pfError = true;
                 $pfErrMsg = PF_ERR_INVALID_SIGNATURE;

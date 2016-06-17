@@ -157,7 +157,7 @@ function pfValidSignature( $pfData = null, &$pfParamString = null, $pfPassphrase
     // Remove the last '&' from the parameter string
     $pfParamString = substr( $pfParamString, 0, -1 );
 
-    if( is_null( $pfPassphrase ) ||  $this->getConfigData( 'server' ) != 'live' )
+    if( is_null( $pfPassphrase ) || Mage::getStoreConfig( 'payment/payfast/server' ) != 'live' )
     {
         $tempParamString = $pfParamString;
     }
