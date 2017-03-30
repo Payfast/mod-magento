@@ -1,0 +1,11 @@
+{
+  "name": "payfast/mod-magento",
+  "license": "GNU",
+  "type": "magento-module",
+  "description": "Payfast module for Magento 1",
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  },
+  "require-dev": {
+  }
+}
