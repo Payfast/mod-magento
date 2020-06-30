@@ -1,3 +1,6 @@
+
+Note :: This plugin is no longer support as of the 30 June 2020 due to support for Magento 1 ending
+
 PayFast Magento v1.4-1.7 Module v1.1 for Magento v1.4-1.9
 -----------------------------------------------------------------------------
 Copyright (c) 2008 PayFast (Pty) Ltd
